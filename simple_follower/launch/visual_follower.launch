@@ -1,0 +1,4 @@
+<launch>
+  <include file='$(find simple_follower)/launch/nodes/visualTracker.launch' />
+  <include file='$(find simple_follower)/launch/nodes/follower.launch' />
+</launch>

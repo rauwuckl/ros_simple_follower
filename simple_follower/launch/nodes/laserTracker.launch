@@ -1,0 +1,8 @@
+<launch>
+  <node name='laser_tracker' pkg="simple_follower" type="laserTracker.py">
+    <!-- This is to avoid treating noise in the laser ranges as objects -->
+    <!-- we check for all range measurements around the currently closest distance measurement (size of this window specified by winSize) if they where similarly close in the last scan (threshold specified by deltaDist-->
+    <param name="winSize" value="2" type="int" />
+    <param name="deltaDist" value="0.2" type="double" />
+  </node>
+</launch>

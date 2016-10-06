@@ -1,0 +1,13 @@
+<launch>
+  <node name='follower' pkg="simple_follower" type="follower.py">
+    <!-- switchMode: (if true one button press will change betwenn active, not active. If false the button will have to be kept pressed all the time to be active -->
+    <param name="switchMode" value="True" type="bool" />
+    <!-- maximal speed (angular and linear both), tartet distance: the robot will try to keep this fixed distance -->
+    <param name='maxSpeed' value='0.4' type='double' />
+    <param name='targetDist' value='2.0' type='double' />
+    <!-- index of the button in the buttons field of the joy message from the ps3 controller, that switches active/inactive  -->
+    <param name='controllButtonIndex' value='-4' type='int' />
+    <rosparam ns='PID_controller' command='load' file='$(find simple_follower)/parameters/PID_param.yaml' />
+  </node>
+</launch>
+

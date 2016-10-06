@@ -1,0 +1,17 @@
+<launch>
+  <node name='visual_tracker' pkg="simple_follower" type="visualTracker.py">
+    <!-- color or the target in HSV color space -->
+    <rosparam ns='target'>
+      upper : [0, 120, 100]
+      lower : [9, 255, 255]
+    </rosparam>
+    <rosparam ns='pictureDimensions'>
+      <!-- Picture dimensions in pixel -->
+      pictureHeight: 480
+      pictureWidth: 640
+      <!-- Viewing angle of the camera in one direction in Radians -->
+      verticalAngle: 0.43196898986859655
+      horizontalAngle: 0.5235987755982988
+    </rosparam>
+  </node>
+</launch>
