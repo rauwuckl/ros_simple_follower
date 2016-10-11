@@ -17,12 +17,12 @@ class Follower:
 		self.controllerLossTimer.start()
 		self.switchMode= rospy.get_param('~switchMode') # if this is set to False the O button has to be kept pressed in order for it to move
 		self.max_speed = rospy.get_param('~maxSpeed') 
-		self.conrollButtonIndex = rospy.get_param('~controllButtonIndex')
+		self.controllButtonIndex = rospy.get_param('~controllButtonIndex')
 
 		self.buttonCallbackBusy=False
 		self.active=False
 
-		self.cmdVelPublisher = rospy.Publisher('/cmd_vel', Twist, queue_size =3)
+		self.cmdVelPublisher = rospy.Publisher('/cmd_vel/yolo', Twist, queue_size =3)
 		# the topic for the messages from the ps3 controller (game pad)
 		self.joySubscriber = rospy.Subscriber('joy', Joy, self.buttonCallback)
 
@@ -59,8 +59,8 @@ class Follower:
 		[uncliped_ang_speed, uncliped_lin_speed] = self.PID_controller.update([angleX, distance])
 			
 		# clip these speeds to be less then the maximal speed specified above
-		angularSpeed = np.clip(-uncliped_ang_speed, -max_speed, max_speed)
-		linearSpeed  = np.clip(-uncliped_lin_speed, -max_speed, max_speed)
+		angularSpeed = np.clip(-uncliped_ang_speed, -self.max_speed, self.max_speed)
+		linearSpeed  = np.clip(-uncliped_lin_speed, -self.max_speed, self.max_speed)
 		
 		# create the Twist message to send to the cmd_vel topic
 		velocity = Twist()	
@@ -96,7 +96,7 @@ class Follower:
 	def threadedButtonCallback(self, joy_data):
 		self.buttonCallbackBusy = True
 
-		if(joy_data.buttons[self.controllButtonIndex]==switchMode and self.active):
+		if(joy_data.buttons[self.controllButtonIndex]==self.switchMode and self.active):
 			# we are active
 			# switchMode = false: we will always be inactive whenever the button is not pressed (buttons[index]==false)
 			# switchMode = true: we will only become inactive if we press the button. (if we keep pressing it, 

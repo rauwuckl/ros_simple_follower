@@ -18,8 +18,8 @@ plt.close('all')
 class visualTracker:
 	def __init__(self):
 		self.bridge = CvBridge()
-		self.targetUpper = rospy.get_param('~target/upper') 
-		self.targetLower = rospy.get_param('~target/lower')
+		self.targetUpper = np.array(rospy.get_param('~target/upper'))
+		self.targetLower = np.array(rospy.get_param('~target/lower'))
 		self.pictureHeight= rospy.get_param('~pictureDimensions/pictureHeight')
 		self.pictureWidth = rospy.get_param('~pictureDimensions/pictureWidth')
 		vertAngle =rospy.get_param('~pictureDimensions/verticalAngle')
@@ -50,8 +50,8 @@ class visualTracker:
 		frame = self.bridge.imgmsg_to_cv2(image_data, desired_encoding='rgb8')
 		depthFrame = self.bridge.imgmsg_to_cv2(depth_data, desired_encoding='passthrough')#"32FC1")
 
-		if(np.shape(frame) != (self.pictureHeight, self.pictureWidth)):
-			raise ValueError('image does not have the right shape')
+		if(np.shape(frame)[0:2] != (self.pictureHeight, self.pictureWidth)):
+			raise ValueError('image does not have the right shape. shape(frame): {}, shape parameters:{}'.format(np.shape(frame)[0:2], (self.pictureHeight, self.pictureWidth)))
 
 		# blure a little and convert to HSV color space
 		blurred = cv2.GaussianBlur(frame, (11,11), 0)
