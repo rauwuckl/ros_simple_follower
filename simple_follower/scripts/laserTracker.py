@@ -8,7 +8,7 @@ import numpy as np
 from sensor_msgs.msg import Joy, LaserScan
 from geometry_msgs.msg import Twist, Vector3
 from std_msgs.msg import String as StringMsg
-from first_experiments.msg import position as PositionMsg
+from simple_follower.msg import position as PositionMsg
 		
 class laserTracker:
 	def __init__(self):
