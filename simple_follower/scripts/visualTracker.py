@@ -9,7 +9,7 @@ from matplotlib import pyplot as plt
 from cv_bridge import CvBridge 
 
 from sensor_msgs.msg import Image
-from first_experiments.msg import position as PositionMsg
+from simple_follower.msg import position as PositionMsg
 from std_msgs.msg import String as StringMsg
 np.seterr(all='raise')  
 displayImage=False
