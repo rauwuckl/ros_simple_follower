@@ -25,4 +25,4 @@ There are three nodes. They can be independently launched using the .launch file
   - visualTracker.launch (follows the biggest object with the color specified in the launch file)
   - laserTracker.launch (follows the closest point in the laser range data)
   
-**I wrote this code to familiarize myself with robotics and it probably does not follow best practices.**
+**DISCLAIMER: I wrote this code to familiarize myself with robotics and it probably does not follow best practices.**
