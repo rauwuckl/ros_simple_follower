@@ -4,7 +4,8 @@ See it in action: https://youtu.be/XpQpfcJzsFU
 A very simple implementation for ROS to make a mobile robot follow a target. Either using a Laser Range Finder to follow the closest object or an RGB-D camera to follow a specific color. It was developed for a Robotnik 'Summit XL' robot but should work anywhere (You might have to change the topics in the python files though). 
 
 The visual tracker might be of some interest as an example for a very basic and naive approach at tracking colored 3D objects. 
-## Instalation
+
+## Installation
 Download the simple_follower folder into the src folder in your catkin workspace. e.g.:
 ```
 roscd ; cd ../src
@@ -24,3 +25,5 @@ There are three nodes. They can be independently launched using the .launch file
   - visualTracker.launch (follows the biggest object with the color specified in the launch file)
   - laserTracker.launch (follows the closest point in the laser range data)
   
+**
+I wrote this code to familiarize myself with robotics and it probably does not follow best practices.**
